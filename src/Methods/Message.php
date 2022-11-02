@@ -116,7 +116,7 @@ trait Message
      */
     public function unpinAllChatMessages(array $params)
     {
-        $response = $this->post('unpinChatMessage', $params);
+        $response = $this->post('unpinAllChatMessages', $params);
 
         return new Message($response->getDecodedBody());
     }
