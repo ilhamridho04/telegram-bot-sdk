@@ -46,6 +46,82 @@ trait Message
     }
 
     /**
+     * Pin Chat Message.
+     *
+     * <code>
+     * $params = [
+     *   'chat_id'      => '',
+     *   'message_id'   => '',
+     * ];
+     * </code>
+     *
+     * @link https://core.telegram.org/bots/api#pinchatmessage
+     *
+     * @param array    $params
+     *
+     * @var int|string $params ['chat_id']
+     * @var int        $params ['message_id']
+     *
+     * @return Message
+     */
+    public function pinChatMessage(array $params)
+    {
+        $response = $this->post('pinChatMessage', $params);
+
+        return new Message($response->getDecodedBody());
+    }
+
+    /**
+     * Unpin Chat Message.
+     *
+     * <code>
+     * $params = [
+     *   'chat_id'      => '',
+     *   'message_id'   => '',
+     * ];
+     * </code>
+     *
+     * @link https://core.telegram.org/bots/api#unpinchatmessage
+     *
+     * @param array    $params
+     *
+     * @var int|string $params ['chat_id']
+     * @var int        $params ['message_id']
+     *
+     * @return Message
+     */
+    public function unpinChatMessage(array $params)
+    {
+        $response = $this->post('unpinChatMessage', $params);
+
+        return new Message($response->getDecodedBody());
+    }
+
+    /**
+     * Unpin All Message.
+     *
+     * <code>
+     * $params = [
+     *   'chat_id'  => '',
+     * ];
+     * </code>
+     *
+     * @link https://core.telegram.org/bots/api#unpinallchatmessages
+     *
+     * @param array    $params
+     *
+     * @var int|string $params ['chat_id']
+     *
+     * @return Message
+     */
+    public function unpinAllChatMessages(array $params)
+    {
+        $response = $this->post('unpinChatMessage', $params);
+
+        return new Message($response->getDecodedBody());
+    }
+
+    /**
      * Forward messages of any kind.
      *
      * <code>
@@ -560,6 +636,6 @@ trait Message
             return true;
         }
 
-        throw new TelegramSDKException('Invalid Action! Accepted value: '.implode(', ', $validActions));
+        throw new TelegramSDKException('Invalid Action! Accepted value: ' . implode(', ', $validActions));
     }
 }
